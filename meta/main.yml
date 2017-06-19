@@ -1,0 +1,17 @@
+galaxy_info:
+  author: Aleksey Demidov
+  description: ntp role
+  issue_tracker_url: https://github.com/kashtan404/centos_ntp/issues
+  license: MIT
+  min_ansible_version: 1.2
+  github_branch: master
+  platforms:
+  - name: EL
+    versions:
+    - 7
+    - 6
+
+  galaxy_tags:
+  - kashtan404
+  - ntp
+  - centos

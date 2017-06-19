@@ -1,0 +1,35 @@
+---
+
+- name: Install or update NTP
+  yum:
+    name: ntp
+    state: latest
+
+- name: NTP daemon enable
+  service:
+    name: ntpd
+    state: started
+    enabled: yes
+
+- name: NTP setup conf file
+  template:
+    src: ntpdate.j2
+    dest: /etc/ntp.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart_ntpd
+
+- name: NTP set timezone UTC
+  timezone:
+    name: {{ time_zone }}
+  notify: restart_ntpd
+
+- name: NTP set clock file
+  template:
+    src: clock.j2
+    dest: /etc/sysconfig/clock
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart_ntpd
